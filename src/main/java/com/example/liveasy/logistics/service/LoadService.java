@@ -3,19 +3,10 @@ package com.example.liveasy.logistics.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
-
-import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
-import com.example.liveasy.logistics.customException.EmptyInputException;
 import com.example.liveasy.logistics.dao.LoadLogisticsDAO;
 import com.example.liveasy.logistics.entities.LoadLogistics;
 
@@ -31,12 +22,7 @@ public class LoadService {
 	
 	public ResponseEntity<String> addLoadDetail(LoadLogistics load) {
 		
-		/*	 when no value is passed in load as the body then the error is Required request body is missing with 400 : Bad Request	*/
-		if(load == null)
-		{
-			throw new EmptyInputException("400","Please provide a input");
-		}
-		
+
 		LoadLogistics result =  loadDao.save(load);
 		if(result != null)
 		{
